@@ -33,7 +33,7 @@ tree -R
         }
         stage('Build image ') {
           steps {
-            sh '''docker build  --tag boodman/jeke:${BUILD_NUMBER} .
+            sh '''sudo docker build Â --tag boodman/jeke:${BUILD_NUMBER} .
 '''
             echo 'Build  image with tag ${BUILD_NUMBER}'
             sh 'docker images | grep "jeke"'
@@ -50,7 +50,7 @@ tree -R
         }
         stage('run container') {
           steps {
-            sh 'docker rm -f korobka '
+            sh 'docker rm -f korobka'
           }
         }
       }
