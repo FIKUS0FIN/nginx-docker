@@ -9,9 +9,19 @@ tree -R'''
       }
     }
     stage('build image ') {
-      steps {
-        sh 'sudo docker build  --tag boodman/jeke:${BUILD_NUMBER} .'
-        sh 'sudo docker images | grep "jeke"'
+      parallel {
+        stage('build image ') {
+          steps {
+            sh 'sudo docker build  --tag boodman/jeke:${BUILD_NUMBER} .'
+            sh 'sudo docker images | grep "jeke"'
+          }
+        }
+        stage('') {
+          steps {
+            sh '''pwd�
+ls -la'''
+          }
+        }
       }
     }
     stage('run image') {
