@@ -31,7 +31,9 @@ set -x
 
 version=$((${BUILD_NUMBER}-1))
 echo $version
-sudo docker rmi boodman/jeke:$version | true'''
+#sudo docker rmi boodman/jeke:$version | true
+
+sudo docker rmi $(sudo docker images boodman/jeke -q | tail -n +2)'''
       }
     }
   }
