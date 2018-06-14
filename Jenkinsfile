@@ -33,7 +33,7 @@ version=$((${BUILD_NUMBER}-1))
 echo $version
 #sudo docker rmi boodman/jeke:$version | true
 
-sudo docker rmi -f $(sudo docker images boodman/jeke -q | tail -n +2) || true'''
+sudo docker rmi -f $(sudo docker images boodman/jeke -q | tail -n +2) || false'''
       }
     }
   }
