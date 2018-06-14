@@ -5,23 +5,23 @@ pipeline {
       steps {
         sh '''ls -la
 tree -R'''
-        sh 'docker info'
+        sh 'sudo docker info'
       }
     }
     stage('build image ') {
       steps {
-        sh 'sudo docker build  --tag boodman/jeke:${BUILD_NUMBER} .'
-        sh 'docker images | grep "jeke"'
+        sh 'sudo docker build Â --tag boodman/jeke:${BUILD_NUMBER} .'
+        sh 'sudo docker images | grep "jeke"'
       }
     }
     stage('run image') {
       steps {
-        sh 'docker run --name korobka -tid -p 80:80 boodman/jeke:${BUILD_NUMBER}'
+        sh 'sudo docker run --name korobka -tid -p 80:80 boodman/jeke:${BUILD_NUMBER}'
       }
     }
     stage('clean up ') {
       steps {
-        sh 'docker rm -f korobka'
+        sh 'sudo docker rm -f korobka'
       }
     }
   }
