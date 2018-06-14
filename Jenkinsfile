@@ -21,7 +21,17 @@ tree -R'''
     }
     stage('clean up ') {
       steps {
+        sh 'sudo netstat -tlpn | grep "80" | grep -i docker | grep "80"'
+        sleep 5
         sh 'sudo docker rm -f korobka'
+        sh '''#!/bin/bash 
+
+set -o pipefail
+set -x 
+
+version=$((${BUILD_NUMBER}-1))
+echo $version
+sudo docker rmi boodman/jeke:$version | true'''
       }
     }
   }
